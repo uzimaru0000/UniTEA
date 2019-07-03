@@ -8,10 +8,10 @@ namespace TEA.Example.Simple
     [SerializeField]
     new Renderer renderer;
 
-    public TEA<Model, Msg> tea
+    TEA<Model, Msg> tea
     {
       get;
-      private set;
+      set;
     }
 
     void Start()
@@ -22,6 +22,11 @@ namespace TEA.Example.Simple
     void Update()
     {
       tea.Update();
+    }
+
+    public void Commit(IMessenger<Msg> msg)
+    {
+      tea.Commit(msg);
     }
   }
 

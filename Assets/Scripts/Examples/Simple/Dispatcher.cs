@@ -11,7 +11,7 @@ namespace TEA.Example.Simple
 
     public void ChangeName(string str)
     {
-      manager.tea.Commit(new NameChanger(str));
+      manager.Commit(new NameChanger(str));
     }
 
     public void ChangeAge(string str)
@@ -19,7 +19,7 @@ namespace TEA.Example.Simple
       int n;
       if (int.TryParse(str, out n))
       {
-        manager.tea.Commit(new AgeChanger(n));
+        manager.Commit(new AgeChanger(n));
       }
     }
   }

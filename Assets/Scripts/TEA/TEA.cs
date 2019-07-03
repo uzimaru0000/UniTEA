@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace TEA
 {
@@ -33,8 +31,8 @@ namespace TEA
       {
         var msg = queue.Dequeue();
         model = updater.Update(msg, model);
-        renderer.Render(model);
       }
+      renderer.Render(model);
     }
 
     public void Commit(IMessenger<Msg> msg)
@@ -43,24 +41,4 @@ namespace TEA
     }
 
   }
-
-
-  public interface IMessenger<T> where T : struct
-  {
-    T GetMessage();
-  }
-
-  public interface IUpdater<Model, Msg>
-    where Model : struct
-    where Msg : struct
-  {
-    Model Update(IMessenger<Msg> msg, Model model);
-  }
-
-  public interface IRenderer<Model>
-    where Model : struct
-  {
-    void Render(Model model);
-  }
-
 }
