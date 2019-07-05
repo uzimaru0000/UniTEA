@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TEA
 {
@@ -15,14 +16,20 @@ namespace TEA
 
     Model model;
 
-    public TEA(System.Func<Model> init, IUpdater<Model, Msg> updater, IRenderer<Model> renderer)
+    public TEA(
+      System.Func<(Model, Cmd<Msg>)> init,
+      IUpdater<Model, Msg> updater,
+      IRenderer<Model> renderer
+    )
     {
       this.updater = updater;
       this.renderer = renderer;
       queue = new Queue<IMessenger<Msg>>();
-      model = init.Invoke();
+      var (initModel, cmd) = init.Invoke();
+      this.model = initModel;
+      _ = ExecTask(cmd);
 
-      renderer.Render(model);
+      renderer.Render(this.model);
     }
 
     public void Update()
@@ -30,9 +37,18 @@ namespace TEA
       while (queue.Count > 0)
       {
         var msg = queue.Dequeue();
-        model = updater.Update(msg, model);
+        var (newModel, cmd) = updater.Update(msg, model);
+        model = newModel;
+        _ = ExecTask(cmd);
       }
       renderer.Render(model);
+    }
+
+    async Task ExecTask(Cmd<Msg> cmd)
+    {
+      if (cmd == Cmd<Msg>.NoOp) return;
+      IMessenger<Msg> msg = await cmd.Preform();
+      Commit(msg);
     }
 
     public void Commit(IMessenger<Msg> msg)

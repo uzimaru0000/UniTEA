@@ -1,4 +1,4 @@
-using TEA;
+using TEA.Utils;
 
 namespace TEA.Example.Simple
 {
@@ -8,41 +8,15 @@ namespace TEA.Example.Simple
     ChangeAge
   }
 
-  class NameChanger : IMessenger<Msg>
+  class NameChanger : OneValueMsg<Msg, string>
   {
-    public string name
-    {
-      get;
-      private set;
-    }
-
-    public NameChanger(string name)
-    {
-      this.name = name;
-    }
-
-    public Msg GetMessage()
-    {
-      return Msg.ChangeName;
-    }
+    public override Msg GetMessage() => Msg.ChangeName;
+    public NameChanger(string name) : base(name) { }
   }
 
-  class AgeChanger : IMessenger<Msg>
+  class AgeChanger : OneValueMsg<Msg, int>
   {
-    public int age
-    {
-      get;
-      private set;
-    }
-
-    public AgeChanger(int age)
-    {
-      this.age = age;
-    }
-
-    public Msg GetMessage()
-    {
-      return Msg.ChangeAge;
-    }
+    public override Msg GetMessage() => Msg.ChangeAge;
+    public AgeChanger(int age) : base(age) { }
   }
 }

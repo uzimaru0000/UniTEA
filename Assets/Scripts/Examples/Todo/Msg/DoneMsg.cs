@@ -1,17 +1,11 @@
+using TEA.Utils;
+
 namespace TEA.Example.Todo
 {
-  class DeleteMsg : IMessenger<Msg>
+
+  class DoneMsg : OneValueMsg<Msg, int>
   {
-    public Msg GetMessage() => Msg.Delete;
-
-    public int id
-    {
-      get;
-    }
-
-    public DeleteMsg(int id)
-    {
-      this.id = id;
-    }
+    public override Msg GetMessage() => Msg.Done;
+    public DoneMsg(int value) : base(value) { }
   }
 }

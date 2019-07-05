@@ -1,5 +1,6 @@
 using UnityEngine;
 using TEA;
+using System.Threading.Tasks;
 
 namespace TEA.Example.Simple
 {
@@ -16,7 +17,7 @@ namespace TEA.Example.Simple
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(() => new Model(), new Updater(), renderer);
+      tea = new TEA<Model, Msg>(() => (new Model(), Cmd<Msg>.NoOp), new Updater(), renderer);
     }
 
     void Update()
@@ -32,26 +33,26 @@ namespace TEA.Example.Simple
 
   class Updater : IUpdater<Model, Msg>
   {
-    public Model Update(IMessenger<Msg> msg, Model model)
+    public (Model, Cmd<Msg>) Update(IMessenger<Msg> msg, Model model)
     {
       switch (msg)
       {
         case NameChanger changer:
-          return new Model()
+          return (new Model()
           {
             age = model.age,
-            name = changer.name
-          };
+            name = changer.value
+          }, Cmd<Msg>.NoOp);
 
         case AgeChanger changer:
-          return new Model()
+          return (new Model()
           {
-            age = changer.age,
+            age = changer.value,
             name = model.name
-          };
+          }, Cmd<Msg>.NoOp);
       }
 
-      return new Model();
+      return (model, Cmd<Msg>.NoOp);
     }
   }
 }

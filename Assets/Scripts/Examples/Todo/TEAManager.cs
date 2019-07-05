@@ -30,11 +30,11 @@ namespace TEA.Example.Todo
     void Start()
     {
       tea = new TEA<Model, Msg>(
-        () => new Model
+        () => (new Model
         {
           input = "",
           todoList = ImmutableList.Create<Todo>()
-        }, new Updater(), renderer);
+        }, Cmd<Msg>.NoOp), new Updater(), renderer);
     }
 
     void Update()

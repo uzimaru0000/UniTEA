@@ -1,5 +1,6 @@
 using UnityEngine;
 using TEA;
+using System.Threading.Tasks;
 
 namespace TEA.Example.Counter
 {
@@ -12,7 +13,7 @@ namespace TEA.Example.Counter
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(() => new Model() { counter = 0 }, new Updater(), renderer);
+      tea = new TEA<Model, Msg>(() => (new Model() { counter = 0 }, Cmd<Msg>.NoOp), new Updater(), renderer);
     }
 
     void Update()
@@ -28,24 +29,24 @@ namespace TEA.Example.Counter
 
   class Updater : IUpdater<Model, Msg>
   {
-    public Model Update(IMessenger<Msg> msg, Model model)
+    public (Model, Cmd<Msg>) Update(IMessenger<Msg> msg, Model model)
     {
       switch (msg)
       {
         case IncrementMsg increment:
-          return new Model()
+          return (new Model()
           {
             counter = model.counter + 1
-          };
+          }, Cmd<Msg>.NoOp);
 
         case DecrementMsg decrement:
-          return new Model()
+          return (new Model()
           {
             counter = model.counter - 1
-          };
+          }, Cmd<Msg>.NoOp);
       }
 
-      return new Model();
+      return (model, Cmd<Msg>.NoOp);
     }
   }
 }

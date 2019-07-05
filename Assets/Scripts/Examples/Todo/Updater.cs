@@ -1,5 +1,5 @@
 using TEA;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Collections.Immutable;
 using System.Linq;
 
@@ -14,17 +14,17 @@ namespace TEA.Example.Todo
       idCounter = new Counter();
     }
 
-    public Model Update(IMessenger<Msg> msg, Model model)
+    public (Model, Cmd<Msg>) Update(IMessenger<Msg> msg, Model model)
     {
       UnityEngine.Debug.Log(msg);
       switch (msg)
       {
         case InputMsg inputMsg:
-          return new Model
+          return (new Model
           {
             input = inputMsg.value,
             todoList = model.todoList
-          };
+          }, Cmd<Msg>.NoOp);
 
         case AddTodoMsg addTodoMsg:
           if (model.input.Length == 0) break;
@@ -36,34 +36,34 @@ namespace TEA.Example.Todo
             isDone = false
           };
 
-          return new Model
+          return (new Model
           {
             input = "",
             todoList = model.todoList.Add(todo)
-          };
+          }, Cmd<Msg>.NoOp);
 
         case DoneMsg doneMsg:
-          return new Model
+          return (new Model
           {
             input = model.input,
             todoList = model.todoList.Select(x =>
             {
-              if (x.id == doneMsg.id)
+              if (x.id == doneMsg.value)
               {
                 x.isDone = !x.isDone;
               }
               return x;
             }).ToImmutableList()
-          };
+          }, Cmd<Msg>.NoOp);
 
         case DeleteMsg deleteMsg:
-          return new Model
+          return (new Model
           {
             input = model.input,
-            todoList = model.todoList.Where(x => x.id != deleteMsg.id).ToImmutableList()
-          };
+            todoList = model.todoList.Where(x => x.id != deleteMsg.value).ToImmutableList()
+          }, Cmd<Msg>.NoOp);
       }
-      return model;
+      return (model, Cmd<Msg>.NoOp);
     }
 
     class Counter

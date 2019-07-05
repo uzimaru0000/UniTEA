@@ -1,17 +1,10 @@
+using TEA.Utils;
+
 namespace TEA.Example.Todo
 {
-  class InputMsg : IMessenger<Msg>
+  class InputMsg : OneValueMsg<Msg, string>
   {
-    public Msg GetMessage() => Msg.Input;
-
-    public string value
-    {
-      get;
-    }
-
-    public InputMsg(string str)
-    {
-      value = str;
-    }
+    public override Msg GetMessage() => Msg.Input;
+    public InputMsg(string str) : base(str) { }
   }
 }

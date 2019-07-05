@@ -50,11 +50,7 @@ namespace TEA.Example.Todo
     void RegisterEvent()
     {
       delButton.onClick.AddListener(() => TEAManager.Instance.Commit(new DeleteMsg(this.todo.id)));
-      checkBox.onValueChanged.AddListener(_ =>
-      {
-        print(gameObject.name);
-        TEAManager.Instance.Commit(new DoneMsg(this.todo.id));
-      });
+      checkBox.onValueChanged.AddListener(_ => TEAManager.Instance.Commit(new DoneMsg(this.todo.id)));
     }
 
     void RemoveEventListener()
