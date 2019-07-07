@@ -24,7 +24,7 @@ namespace TEA.Example.Todo
           {
             input = inputMsg.value,
             todoList = model.todoList
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case AddTodoMsg addTodoMsg:
           if (model.input.Length == 0) break;
@@ -40,7 +40,7 @@ namespace TEA.Example.Todo
           {
             input = "",
             todoList = model.todoList.Add(todo)
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case DoneMsg doneMsg:
           return (new Model
@@ -54,16 +54,16 @@ namespace TEA.Example.Todo
               }
               return x;
             }).ToImmutableList()
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case DeleteMsg deleteMsg:
           return (new Model
           {
             input = model.input,
             todoList = model.todoList.Where(x => x.id != deleteMsg.value).ToImmutableList()
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
       }
-      return (model, Cmd<Msg>.NoOp);
+      return (model, Cmd<Msg>.none);
     }
 
     class Counter

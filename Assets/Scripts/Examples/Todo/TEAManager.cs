@@ -34,12 +34,7 @@ namespace TEA.Example.Todo
         {
           input = "",
           todoList = ImmutableList.Create<Todo>()
-        }, Cmd<Msg>.NoOp), new Updater(), renderer);
-    }
-
-    void Update()
-    {
-      tea.Update();
+        }, Cmd<Msg>.none), new Updater(), renderer);
     }
 
     public void Commit(IMessenger<Msg> msg)

@@ -15,7 +15,7 @@ namespace TEA.Example.HTTP
             texture = model.texture,
             width = inputMsg.value,
             height = model.height
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case InputHeightMsg inputMsg:
           return (new Model
@@ -23,7 +23,7 @@ namespace TEA.Example.HTTP
             texture = model.texture,
             height = inputMsg.value,
             width = model.width
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case RequestMsg _:
           var request = new ImageRequester(model.width, model.height, x => new GetImageMsg(x));
@@ -35,9 +35,9 @@ namespace TEA.Example.HTTP
             texture = getImageMsg.value,
             width = model.width,
             height = model.height
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
       }
-      return (model, Cmd<Msg>.NoOp);
+      return (model, Cmd<Msg>.none);
     }
   }
 

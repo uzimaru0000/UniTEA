@@ -13,12 +13,7 @@ namespace TEA.Example.Counter
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(() => (new Model() { counter = 0 }, Cmd<Msg>.NoOp), new Updater(), renderer);
-    }
-
-    void Update()
-    {
-      tea.Update();
+      tea = new TEA<Model, Msg>(() => (new Model() { counter = 0 }, Cmd<Msg>.none), new Updater(), renderer);
     }
 
     public void Commit(IMessenger<Msg> msg)
@@ -37,16 +32,16 @@ namespace TEA.Example.Counter
           return (new Model()
           {
             counter = model.counter + 1
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case DecrementMsg decrement:
           return (new Model()
           {
             counter = model.counter - 1
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
       }
 
-      return (model, Cmd<Msg>.NoOp);
+      return (model, Cmd<Msg>.none);
     }
   }
 }

@@ -23,7 +23,6 @@ namespace TEA.Example.HTTP
 
     void Update()
     {
-      tea.Update();
     }
 
     public void Commit(IMessenger<Msg> msg)

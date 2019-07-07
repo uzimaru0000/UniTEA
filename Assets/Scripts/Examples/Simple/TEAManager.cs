@@ -17,12 +17,7 @@ namespace TEA.Example.Simple
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(() => (new Model(), Cmd<Msg>.NoOp), new Updater(), renderer);
-    }
-
-    void Update()
-    {
-      tea.Update();
+      tea = new TEA<Model, Msg>(() => (new Model(), Cmd<Msg>.none), new Updater(), renderer);
     }
 
     public void Commit(IMessenger<Msg> msg)
@@ -42,17 +37,17 @@ namespace TEA.Example.Simple
           {
             age = model.age,
             name = changer.value
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
 
         case AgeChanger changer:
           return (new Model()
           {
             age = changer.value,
             name = model.name
-          }, Cmd<Msg>.NoOp);
+          }, Cmd<Msg>.none);
       }
 
-      return (model, Cmd<Msg>.NoOp);
+      return (model, Cmd<Msg>.none);
     }
   }
 }

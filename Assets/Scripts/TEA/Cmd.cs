@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TEA
 {
   public struct Cmd<Msg> where Msg : struct
   {
 
-    public static Cmd<Msg> NoOp = new Cmd<Msg>(null);
+    public static Cmd<Msg> none = new Cmd<Msg>(null);
 
     Task<IMessenger<Msg>> task
     {
