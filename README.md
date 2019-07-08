@@ -1,4 +1,4 @@
-# ![logo](./images/logo.png)UniTEA
+# ![logo](./images/logo.png)
 
 UniTEA is an implementation of The Elm Architecture for Unity3D.
 
