@@ -32,17 +32,17 @@ Comming soon...
    }
    ```
 
-3. Create a class that wraps the message. Implement the `IMessage<Msg>` interface.
+3. Create a class that wraps the message. Implement the `IMessenger<Msg>` interface.
 
    ```c#
    using UniTEA;
    
-   public class IncreaseMsg : IMessage<Msg>
+   public class IncreaseMsg : IMessenger<Msg>
    {
    	public Msg GetMessage() => Msg.Increase;
    }
    
-   public class DecreaseMsg : IMessage<Msg>
+   public class DecreaseMsg : IMessenger<Msg>
    {
    	public Msg GetMessage() => Msg.Decrease;
    }
@@ -55,7 +55,7 @@ Comming soon...
    
    public class Updater : IUpdater<Model, Msg>
    {
-   	public (Model, Cmd<Msg>) Update(IMessage<Msg> msg, Model model)
+   	public (Model, Cmd<Msg>) Update(IMessenger<Msg> msg, Model model)
    	{
    		switch (msg)
    		{
@@ -144,7 +144,7 @@ Comming soon...
    		);
    	}
    	
-   	public void Commit(IMessage<Msg> msg)
+   	public void Commit(IMessenger<Msg> msg)
    	{
    		teaInstance.Commit(msg);
    	}
