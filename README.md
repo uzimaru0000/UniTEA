@@ -9,7 +9,23 @@ UniTEA is an implementation of The Elm Architecture for Unity3D.
 
 ## Install
 
-Comming soon...
+Add line in Packages/manifest.json
+
+```json
+{
+  "dependencies" : {
+    ...
+    "com.uzimaru0000.unitea": "https://github.com/uzimaru0000/UniTEA.git",
+    ...
+  }
+}
+```
+
+## Development
+
+1. Make your project and make directory Packages in it.
+2. In Packages, `git clone https://github.com/uzimaru0000/UniTEA.git`
+3. Install UniTEA from clone.
 
 ## Usage
 
