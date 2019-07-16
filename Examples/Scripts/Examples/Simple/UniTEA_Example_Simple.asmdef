@@ -1,0 +1,15 @@
+{
+    "name": "UniTEA_Example_Simple",
+    "references": [
+        "NewAssembly",
+        "UniTEA_Utils"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
