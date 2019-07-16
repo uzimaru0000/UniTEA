@@ -5,7 +5,7 @@ UniTEA is an implementation of The Elm Architecture for Unity3D.
 ## Environment
 
 - Unity3D 2018.4
-- C# 6
+- C# 7.0
 
 ## Install
 
@@ -161,7 +161,6 @@ Comming soon...
 ## Contribution
 
 1. Fork it
-
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
