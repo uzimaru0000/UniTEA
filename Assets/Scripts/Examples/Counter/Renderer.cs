@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TEA.Example.Counter
+namespace UniTEA.Example.Counter
 {
   class Renderer : MonoBehaviour, IRenderer<Model>
   {

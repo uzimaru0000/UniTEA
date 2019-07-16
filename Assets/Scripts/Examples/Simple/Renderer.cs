@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TEA;
+using UniTEA;
 
-namespace TEA.Example.Simple
+namespace UniTEA.Example.Simple
 {
   public class Renderer : MonoBehaviour, IRenderer<Model>
   {

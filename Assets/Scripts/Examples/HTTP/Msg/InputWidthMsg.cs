@@ -1,6 +1,6 @@
-using TEA.Utils;
+using UniTEA.Utils;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   class InputWidthMsg : OneValueMsg<Msg, int>
   {

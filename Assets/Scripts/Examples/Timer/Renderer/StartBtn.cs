@@ -1,7 +1,7 @@
 using UnityEngine;
 using UI = UnityEngine.UI;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   [RequireComponent(typeof(UI.Button))]
   public class StartBtn : MonoBehaviour
@@ -35,11 +35,11 @@ namespace TEA.Example.Timer
         switch (state)
         {
           case TimerState.Stop:
-            TEAManager.Instance.Commit(new TimerStartMsg());
+            TEAManager.Instance.Dispatch(new TimerStartMsg());
             break;
 
           case TimerState.Running:
-            TEAManager.Instance.Commit(new TimerStopMsg());
+            TEAManager.Instance.Dispatch(new TimerStopMsg());
             break;
         }
       });

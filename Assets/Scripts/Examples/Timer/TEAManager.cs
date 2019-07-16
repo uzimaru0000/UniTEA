@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   public class TEAManager : MonoBehaviour
   {
@@ -12,7 +10,7 @@ namespace TEA.Example.Timer
       get => instance;
     }
 
-    TEA<Model, Msg> tea;
+    UniTEA<Model, Msg> tea;
 
     [SerializeField]
     new Renderer renderer;
@@ -28,7 +26,7 @@ namespace TEA.Example.Timer
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(
+      tea = new UniTEA<Model, Msg>(
         () => (new Model
         {
           state = TimerState.Stop
@@ -38,10 +36,10 @@ namespace TEA.Example.Timer
       );
     }
 
-    public void Commit(IMessenger<Msg> msg)
+    public void Dispatch(IMessenger<Msg> msg)
     {
       if (tea == null) return;
-      tea.Commit(msg);
+      tea.Dispatch(msg);
     }
   }
 }

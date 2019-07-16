@@ -1,14 +1,14 @@
 using UnityEngine;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   class Dispatcher : MonoBehaviour
   {
     void OnIncrement(Form form)
-      => TEAManager.Instance.Commit(new IncrementMsg(form));
+      => TEAManager.Instance.Dispatch(new IncrementMsg(form));
 
     void OnDecrement(Form form)
-      => TEAManager.Instance.Commit(new DecrementMsg(form));
+      => TEAManager.Instance.Dispatch(new DecrementMsg(form));
 
     public void HourIncrement() => OnIncrement(Form.Hour);
     public void MinutesIncrement() => OnIncrement(Form.Minutes);
@@ -19,7 +19,7 @@ namespace TEA.Example.Timer
 
     void Update()
     {
-      TEAManager.Instance.Commit(new TimerMsg(Time.deltaTime));
+      TEAManager.Instance.Dispatch(new TimerMsg(Time.deltaTime));
     }
   }
 }

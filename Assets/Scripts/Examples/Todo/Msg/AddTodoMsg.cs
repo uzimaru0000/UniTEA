@@ -1,4 +1,4 @@
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
 
   class AddTodoMsg : IMessenger<Msg>

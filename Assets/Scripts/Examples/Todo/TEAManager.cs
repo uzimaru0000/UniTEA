@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Immutable;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
 
   public class TEAManager : MonoBehaviour
@@ -19,7 +19,7 @@ namespace TEA.Example.Todo
     [SerializeField]
     new Renderer renderer;
 
-    TEA<Model, Msg> tea;
+    UniTEA<Model, Msg> tea;
 
     void Awake()
     {
@@ -29,7 +29,7 @@ namespace TEA.Example.Todo
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(
+      tea = new UniTEA<Model, Msg>(
         () => (new Model
         {
           input = "",
@@ -37,9 +37,9 @@ namespace TEA.Example.Todo
         }, Cmd<Msg>.none), new Updater(), renderer);
     }
 
-    public void Commit(IMessenger<Msg> msg)
+    public void Dispatch(IMessenger<Msg> msg)
     {
-      tea.Commit(msg);
+      tea.Dispatch(msg);
     }
   }
 

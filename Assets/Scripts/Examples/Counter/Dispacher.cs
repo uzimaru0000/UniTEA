@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TEA.Example.Counter
+namespace UniTEA.Example.Counter
 {
   public class Dispacher : MonoBehaviour
   {
@@ -9,12 +9,12 @@ namespace TEA.Example.Counter
 
     public void Increment()
     {
-      manager.Commit(new IncrementMsg());
+      manager.Dispatch(new IncrementMsg());
     }
 
     public void Decrement()
     {
-      manager.Commit(new DecrementMsg());
+      manager.Dispatch(new DecrementMsg());
     }
   }
 

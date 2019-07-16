@@ -1,15 +1,15 @@
 using UnityEngine;
-using TEA;
+using UniTEA;
 using System.Threading.Tasks;
 
-namespace TEA.Example.Simple
+namespace UniTEA.Example.Simple
 {
   public class TEAManager : MonoBehaviour
   {
     [SerializeField]
     new Renderer renderer;
 
-    TEA<Model, Msg> tea
+    UniTEA<Model, Msg> tea
     {
       get;
       set;
@@ -17,12 +17,12 @@ namespace TEA.Example.Simple
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(() => (new Model(), Cmd<Msg>.none), new Updater(), renderer);
+      tea = new UniTEA<Model, Msg>(() => (new Model(), Cmd<Msg>.none), new Updater(), renderer);
     }
 
-    public void Commit(IMessenger<Msg> msg)
+    public void Dispatch(IMessenger<Msg> msg)
     {
-      tea.Commit(msg);
+      tea.Dispatch(msg);
     }
   }
 

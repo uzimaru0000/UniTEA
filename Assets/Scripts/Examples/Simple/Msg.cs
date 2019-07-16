@@ -1,6 +1,6 @@
-using TEA.Utils;
+using UniTEA.Utils;
 
-namespace TEA.Example.Simple
+namespace UniTEA.Example.Simple
 {
   public enum Msg
   {

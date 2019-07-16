@@ -1,4 +1,4 @@
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   public enum Msg
   {

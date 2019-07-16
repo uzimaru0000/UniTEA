@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TEA.Example.Simple
+namespace UniTEA.Example.Simple
 {
   [System.Serializable]
   public struct Model

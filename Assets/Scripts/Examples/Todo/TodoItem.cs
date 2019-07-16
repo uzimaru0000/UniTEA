@@ -1,7 +1,7 @@
 using UnityEngine;
 using UI = UnityEngine.UI;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
   public class TodoItem : MonoBehaviour
   {
@@ -49,8 +49,8 @@ namespace TEA.Example.Todo
 
     void RegisterEvent()
     {
-      delButton.onClick.AddListener(() => TEAManager.Instance.Commit(new DeleteMsg(this.todo.id)));
-      checkBox.onValueChanged.AddListener(_ => TEAManager.Instance.Commit(new DoneMsg(this.todo.id)));
+      delButton.onClick.AddListener(() => TEAManager.Instance.Dispatch(new DeleteMsg(this.todo.id)));
+      checkBox.onValueChanged.AddListener(_ => TEAManager.Instance.Dispatch(new DoneMsg(this.todo.id)));
     }
 
     void RemoveEventListener()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UI = UnityEngine.UI;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   [RequireComponent(typeof(UI.Button))]
   public class ResetBtn : MonoBehaviour
@@ -20,7 +20,7 @@ namespace TEA.Example.Timer
     void Start()
     {
       btn = GetComponent<UI.Button>();
-      btn.onClick.AddListener(() => TEAManager.Instance.Commit(new TimerResetMsg()));
+      btn.onClick.AddListener(() => TEAManager.Instance.Dispatch(new TimerResetMsg()));
     }
 
     void ChangeState()

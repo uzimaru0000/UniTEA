@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   public struct Model
   {

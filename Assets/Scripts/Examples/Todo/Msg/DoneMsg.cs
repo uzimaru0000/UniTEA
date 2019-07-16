@@ -1,6 +1,6 @@
-using TEA.Utils;
+using UniTEA.Utils;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
 
   class DoneMsg : OneValueMsg<Msg, int>

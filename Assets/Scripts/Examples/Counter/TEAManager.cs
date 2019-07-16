@@ -1,24 +1,24 @@
 using UnityEngine;
-using TEA;
+using UniTEA;
 using System.Threading.Tasks;
 
-namespace TEA.Example.Counter
+namespace UniTEA.Example.Counter
 {
   public class TEAManager : MonoBehaviour
   {
     [SerializeField]
     new Renderer renderer;
 
-    TEA<Model, Msg> tea;
+    UniTEA<Model, Msg> tea;
 
     void Start()
     {
-      tea = new TEA<Model, Msg>(() => (new Model() { counter = 0 }, Cmd<Msg>.none), new Updater(), renderer);
+      tea = new UniTEA<Model, Msg>(() => (new Model() { counter = 0 }, Cmd<Msg>.none), new Updater(), renderer);
     }
 
-    public void Commit(IMessenger<Msg> msg)
+    public void Dispatch(IMessenger<Msg> msg)
     {
-      tea.Commit(msg);
+      tea.Dispatch(msg);
     }
   }
 

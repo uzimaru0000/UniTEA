@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
   public class Dispatcher : MonoBehaviour
   {
     public void OnInput(string str)
     {
-      TEAManager.Instance.Commit(new InputMsg(str));
+      TEAManager.Instance.Dispatch(new InputMsg(str));
     }
 
     public void OnClick()
     {
-      TEAManager.Instance.Commit(new AddTodoMsg());
+      TEAManager.Instance.Dispatch(new AddTodoMsg());
     }
   }
 }

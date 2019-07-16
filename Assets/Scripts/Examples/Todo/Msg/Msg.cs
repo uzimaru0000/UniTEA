@@ -1,6 +1,4 @@
-using TEA;
-
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
   public enum Msg
   {

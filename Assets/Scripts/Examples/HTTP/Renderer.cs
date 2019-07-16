@@ -1,7 +1,7 @@
 using UnityEngine;
 using UI = UnityEngine.UI;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   public class Renderer : MonoBehaviour, IRenderer<Model>
   {

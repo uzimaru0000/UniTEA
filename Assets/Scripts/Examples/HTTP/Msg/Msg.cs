@@ -1,4 +1,4 @@
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   public enum Msg
   {

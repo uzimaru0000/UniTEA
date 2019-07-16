@@ -1,4 +1,4 @@
-namespace TEA.Example.Counter
+namespace UniTEA.Example.Counter
 {
 
   [System.Serializable]

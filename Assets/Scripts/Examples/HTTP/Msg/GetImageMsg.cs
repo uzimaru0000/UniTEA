@@ -1,7 +1,7 @@
-using TEA.Utils;
+using UniTEA.Utils;
 using UnityEngine;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   public class GetImageMsg : OneValueMsg<Msg, Texture>
   {

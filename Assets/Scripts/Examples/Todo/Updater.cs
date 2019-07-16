@@ -1,9 +1,7 @@
-using TEA;
-using System.Threading.Tasks;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
   class Updater : IUpdater<Model, Msg>
   {

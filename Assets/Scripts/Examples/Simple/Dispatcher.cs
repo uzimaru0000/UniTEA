@@ -1,7 +1,7 @@
 using UnityEngine;
-using TEA;
+using UniTEA;
 
-namespace TEA.Example.Simple
+namespace UniTEA.Example.Simple
 {
 
   public class Dispatcher : MonoBehaviour
@@ -11,7 +11,7 @@ namespace TEA.Example.Simple
 
     public void ChangeName(string str)
     {
-      manager.Commit(new NameChanger(str));
+      manager.Dispatch(new NameChanger(str));
     }
 
     public void ChangeAge(string str)
@@ -19,7 +19,7 @@ namespace TEA.Example.Simple
       int n;
       if (int.TryParse(str, out n))
       {
-        manager.Commit(new AgeChanger(n));
+        manager.Dispatch(new AgeChanger(n));
       }
     }
   }

@@ -1,7 +1,6 @@
 using UnityEngine;
-using UI = UnityEngine.UI;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   class Renderer : MonoBehaviour, IRenderer<Model>
   {

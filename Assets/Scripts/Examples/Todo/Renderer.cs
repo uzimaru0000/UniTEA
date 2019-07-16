@@ -2,9 +2,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using TEA;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
 
   public class Renderer : MonoBehaviour, IRenderer<Model>

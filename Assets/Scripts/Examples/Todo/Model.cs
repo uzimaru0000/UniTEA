@@ -1,6 +1,6 @@
 using System.Collections.Immutable;
 
-namespace TEA.Example.Todo
+namespace UniTEA.Example.Todo
 {
   public struct Model
   {

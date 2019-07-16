@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   class ImageRequester
   {

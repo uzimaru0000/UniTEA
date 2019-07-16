@@ -1,11 +1,11 @@
 using UnityEngine;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   public class TEAManager : MonoBehaviour
   {
 
-    TEA<Model, Msg> tea;
+    UniTEA<Model, Msg> tea;
 
     [SerializeField]
     new Renderer renderer;
@@ -13,7 +13,7 @@ namespace TEA.Example.HTTP
     void Start()
     {
       var request = new ImageRequester(320, 320, x => new GetImageMsg(x));
-      tea = new TEA<Model, Msg>(() => (new Model
+      tea = new UniTEA<Model, Msg>(() => (new Model
       {
         texture = null,
         width = 320,
@@ -21,14 +21,10 @@ namespace TEA.Example.HTTP
       }, request.ToCmd()), new Updater(), renderer);
     }
 
-    void Update()
-    {
-    }
-
-    public void Commit(IMessenger<Msg> msg)
+    public void Dispatch(IMessenger<Msg> msg)
     {
       if (tea == null) return;
-      tea.Commit(msg);
+      tea.Dispatch(msg);
     }
 
   }

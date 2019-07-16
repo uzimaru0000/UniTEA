@@ -1,7 +1,7 @@
 using UnityEngine.Networking;
 using System.Runtime.CompilerServices;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   static class UnityWebRequestAsyncOperationExtension
   {

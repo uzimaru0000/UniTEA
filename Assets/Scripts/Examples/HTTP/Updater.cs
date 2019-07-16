@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 
-namespace TEA.Example.HTTP
+namespace UniTEA.Example.HTTP
 {
   class Updater : IUpdater<Model, Msg>
   {

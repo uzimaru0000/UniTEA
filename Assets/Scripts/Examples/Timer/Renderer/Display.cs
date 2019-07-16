@@ -1,7 +1,7 @@
 using UnityEngine;
 using UI = UnityEngine.UI;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   [RequireComponent(typeof(UI.InputField))]
   public class Display : MonoBehaviour
@@ -48,7 +48,7 @@ namespace TEA.Example.Timer
         int num;
         if (int.TryParse(x, out num))
         {
-          TEAManager.Instance.Commit(new InputMsg(formType, num));
+          TEAManager.Instance.Dispatch(new InputMsg(formType, num));
         }
       });
     }

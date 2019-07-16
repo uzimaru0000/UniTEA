@@ -1,6 +1,6 @@
-using TEA.Utils;
+using UniTEA.Utils;
 
-namespace TEA.Example.Timer
+namespace UniTEA.Example.Timer
 {
   class InputMsg : OneValueMsg<Msg, int>
   {
