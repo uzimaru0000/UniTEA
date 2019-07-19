@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace UniTEA
 {
   public interface IUpdater<T, U>

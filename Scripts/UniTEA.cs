@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
-using UnityEngine;
+﻿using System.Threading.Tasks;
 
 namespace UniTEA
 {
@@ -12,7 +9,6 @@ namespace UniTEA
 
     IUpdater<T, U> updater;
     IRenderer<T> renderer;
-    Queue<IMessenger<U>> queue;
     T model;
 
     public UniTEA(
@@ -23,7 +19,6 @@ namespace UniTEA
     {
       this.updater = updater;
       this.renderer = renderer;
-      queue = new Queue<IMessenger<U>>();
       var (initModel, cmd) = init.Invoke();
       this.model = initModel;
       _ = ExecTask(cmd);
