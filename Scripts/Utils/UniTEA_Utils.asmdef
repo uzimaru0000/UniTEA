@@ -1,7 +1,7 @@
 {
     "name": "UniTEA_Utils",
     "references": [
-        "NewAssembly"
+        "UniTEA"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
