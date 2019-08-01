@@ -1,7 +1,7 @@
 {
     "name": "UniTEA_Example_Timer",
     "references": [
-        "NewAssembly",
+        "UniTEA",
         "UniTEA_Utils"
     ],
     "optionalUnityReferences": [],

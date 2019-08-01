@@ -1,7 +1,7 @@
 {
-    "name": "UniTEA_Example_Simple",
+    "name": "UniTEA_Example_Counter",
     "references": [
-        "NewAssembly",
+        "UniTEA",
         "UniTEA_Utils"
     ],
     "optionalUnityReferences": [],

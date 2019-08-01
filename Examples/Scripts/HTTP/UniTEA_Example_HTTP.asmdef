@@ -1,7 +1,7 @@
 {
-    "name": "UniTEA_Example_Counter",
+    "name": "UniTEA_Example_HTTP",
     "references": [
-        "NewAssembly",
+        "UniTEA",
         "UniTEA_Utils"
     ],
     "optionalUnityReferences": [],
