@@ -36,9 +36,12 @@ namespace UniTEA
     public void Dispatch(IMessenger<U> msg)
     {
       var (newModel, cmd) = updater.Update(msg, model);
+      if (!Equals(newModel, model))
+      {
+        renderer.Render(newModel);
+      }
       model = newModel;
       _ = ExecTask(cmd);
-      renderer.Render(model);
     }
 
   }
