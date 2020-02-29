@@ -4,7 +4,7 @@ UniTEA is an implementation of The Elm Architecture for Unity3D.
 
 ## Environment
 
-- Unity3D 2018.4
+- Unity3D 2018.4 or higher
 - C# 7.0
 
 ## Install
@@ -20,12 +20,6 @@ Add line in Packages/manifest.json
   }
 }
 ```
-
-## Development
-
-1. Make your project and make directory Packages in it.
-2. In Packages, `git clone https://github.com/uzimaru0000/UniTEA.git`
-3. Install UniTEA from clone.
 
 ## Usage
 
@@ -52,12 +46,12 @@ Add line in Packages/manifest.json
 
    ```c#
    using UniTEA;
-   
+
    public class IncreaseMsg : IMessenger<Msg>
    {
    	public Msg GetMessage() => Msg.Increase;
    }
-   
+
    public class DecreaseMsg : IMessenger<Msg>
    {
    	public Msg GetMessage() => Msg.Decrease;
@@ -68,7 +62,7 @@ Add line in Packages/manifest.json
 
    ```c#
    using UniTEA;
-   
+
    public class Updater : IUpdater<Model, Msg>
    {
    	public (Model, Cmd<Msg>) Update(IMessenger<Msg> msg, Model model)
@@ -92,18 +86,28 @@ Add line in Packages/manifest.json
    }
    ```
 
-5. Create Renderer class. Implement the `IRenderer<Model>` interface.
+5. Create Renderer class. Implement the `IRenderer<Model, Msg>` interface.
 
    ```c#
    using UnityEngine;
    using UnityEngine.UI;
    using UniTEA;
-   
+
    public class Renderer : MonoBehaviour, IRenderer<Model>
    {
    	[SerializeField]
    	Text display;
-   	
+      [SerializeField]
+      Button increaseBtn;
+      [SerializeField]
+      Button decreaseBtn;
+
+      public void Init(System.Action<IMessenger<Msg>> dispatcher)
+      {
+         increaseBtn.onClick.AddListener(() => dispatcher(new IncreaseMsg()));
+         decreaseBtn.onClick.AddListener(() => dispatcher(new DecreaseMsg()));
+      }
+
    	public void Renderer(Model model)
    	{
    		display.text = model.count.ToString();
@@ -111,68 +115,41 @@ Add line in Packages/manifest.json
    }
    ```
 
-6. Create Dispatcher class. If you are handling events in another class, you do not have to create one.
-   Also, refer to the TEA class in any way. (Eg: singleton, injection from the inspector)
-
-   ```c#
-   using UnityEngine;
-   using UnityEngine.UI;
-   using UniTEA;
-   
-   public class Dispatcher : MonoBehaviour
-   {
-   	[SerializeField]
-   	TEAManager manager;
-   
-   	[SerializeField]
-   	Button increaseButton;
-   	
-   	[SerializeField]
-   	Button decreaseButton;
-   	
-   	void Start()
-   	{
-   		increaseButton.onClick.AddListener(() => manager.Commit(new IncreaseMsg()));
-   		decreaseButton.onClick.AddListener(() => manager.Commit(new DecreaseMsg()));
-   	}
-   }
-   ```
-
-7. Create TEAManager class. Make it singleton if necessary. For the TEA object, provide an initialization function, an instance of Updater, and an instance of Renderer.
+6. Create TEAManager class. Make it singleton if necessary. For the UniTEA object, provide an initialization function, an instance of Updater, and an instance of Renderer.
 
    ```c#
    using UniTEA;
    using UnityEngine;
-   
+
    public class TEAManager : MonoBehaviour
    {
-   	TEA<Model, Msg> teaInstance;
-   	
+   	UniTEA<Model, Msg> tea;
+
    	[SerializeField]
    	new Renderer renderer;
-   	
+
    	void Start()
    	{
-   		teaInstance = new TEA<Model, Msg>(
+   		tea = new TEA<Model, Msg>(
    			() => (new Model(), Cmd<Msg>.none),
    			new Updater(),
    			renderer
    		);
-   	}
-   	
-   	public void Commit(IMessenger<Msg> msg)
-   	{
-   		teaInstance.Commit(msg);
    	}
    }
    ```
 
 ## Example
 
-- [Counter](https://github.com/uzimaru0000/UniTEA/tree/master/Assets/Scripts/Examples/Counter)
-- [Simple write value](https://github.com/uzimaru0000/UniTEA/tree/master/Assets/Scripts/Examples/Simple)
-- [TodoList](https://github.com/uzimaru0000/UniTEA/tree/master/Assets/Scripts/Examples/Todo)
-- [HTTP](https://github.com/uzimaru0000/UniTEA/tree/master/Assets/Scripts/Examples/HTTP)
+**TODO: Coming soon!**
+
+**I'm happy if you contribute！**
+
+## Development
+
+1. Make your project and make directory Packages in it.
+2. In Packages, `git clone https://github.com/uzimaru0000/UniTEA.git`
+3. Install UniTEA from clone.
 
 ## Contribution
 

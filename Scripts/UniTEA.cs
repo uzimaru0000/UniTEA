@@ -2,47 +2,40 @@
 
 namespace UniTEA
 {
-  public class UniTEA<T, U>
-    where T : struct
-    where U : struct
-  {
-
-    IUpdater<T, U> updater;
-    IRenderer<T> renderer;
-    T model;
-
-    public UniTEA(
-      System.Func<(T, Cmd<U>)> init,
-      IUpdater<T, U> updater,
-      IRenderer<T> renderer
-    )
+    public class UniTEA<T, U>
+      where T : struct
+      where U : struct
     {
-      this.updater = updater;
-      this.renderer = renderer;
-      var (initModel, cmd) = init.Invoke();
-      this.model = initModel;
-      _ = ExecTask(cmd);
 
-      renderer.Render(this.model);
+        IUpdater<T, U> updater;
+        IRenderer<T, U> renderer;
+        T model;
+
+        public UniTEA(
+          System.Func<(T, Cmd<U>)> init,
+          IUpdater<T, U> updater,
+          IRenderer<T, U> renderer
+        )
+        {
+            this.updater = updater;
+            this.renderer = renderer;
+            var (initModel, cmd) = init.Invoke();
+            this.model = initModel;
+            this.renderer.Init(Dispatch);
+            cmd.exec(Dispatch);
+            renderer.Render(this.model);
+        }
+
+        public void Dispatch(IMessenger<U> msg)
+        {
+            var (newModel, cmd) = this.updater.Update(msg, model);
+            if (!Equals(newModel, model))
+            {
+                this.renderer.Render(newModel);
+            }
+            this.model = newModel;
+            cmd.exec(Dispatch);
+        }
+
     }
-
-    async Task ExecTask(Cmd<U> cmd)
-    {
-      if (cmd == Cmd<U>.none) return;
-      IMessenger<U> msg = await cmd.Preform();
-      Dispatch(msg);
-    }
-
-    public void Dispatch(IMessenger<U> msg)
-    {
-      var (newModel, cmd) = updater.Update(msg, model);
-      if (!Equals(newModel, model))
-      {
-        renderer.Render(newModel);
-      }
-      model = newModel;
-      _ = ExecTask(cmd);
-    }
-
-  }
 }
