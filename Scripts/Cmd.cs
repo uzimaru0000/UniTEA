@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using System;
 
 namespace UniTEA
 {
@@ -17,11 +17,11 @@ namespace UniTEA
             });
         }
 
-        System.Action<System.Action<IMessenger<T>>> task;
+        Action<Dispatcher<T>> task;
 
-        public void exec(System.Action<IMessenger<T>> d) => this.task(d);
+        public void exec(Dispatcher<T> d) => this.task(d);
 
-        public Cmd(System.Action<System.Action<IMessenger<T>>> task)
+        public Cmd(Action<Dispatcher<T>> task)
         {
             this.task = task;
         }
