@@ -4,7 +4,7 @@ namespace UniTEA
       where T : struct
       where U : struct
     {
-        void Init(System.Action<IMessenger<U>> dispatcher);
+        void Init(Dispatcher<U> dispatcher);
         void Render(T model);
     }
 }
