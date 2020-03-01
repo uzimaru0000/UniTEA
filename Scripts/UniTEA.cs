@@ -20,16 +20,7 @@ namespace UniTEA
           System.Func<(T, Cmd<U>)> init,
           IUpdater<T, U> updater,
           IRenderer<T, U> renderer
-        )
-        {
-            this.updater = updater;
-            this.renderer = renderer;
-            var (initModel, cmd) = init.Invoke();
-            this.model = initModel;
-            this.renderer.Init(Dispatch);
-            cmd.exec(Dispatch);
-            renderer.Render(this.model);
-        }
+        ) : this(init, updater, renderer, _ => Sub<IMessenger<U>>.none) { }
 
         public UniTEA(
           System.Func<(T, Cmd<U>)> init,
