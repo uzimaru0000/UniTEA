@@ -16,7 +16,8 @@ namespace UniTEA
             var effects = new IEffect<T>[subs.Length];
             for (var i = 0; i < subs.Length; i++)
             {
-                subs[i].effect.OnOccurrence -= subs[i].OnWatch.Invoke;
+                var sub = subs[i];
+                subs[i].effect.OnOccurrence -= subs[i].Invoke;
                 effects[i] = subs[i].effect;
             }
             return new Sub<T>(new BatchingEffect<T>(effects));
@@ -59,7 +60,7 @@ namespace UniTEA
         {
             foreach (var effect in effects)
             {
-                effect.OnOccurrence += OnOccurrence.Invoke;
+                effect.OnOccurrence += v => OnOccurrence?.Invoke(v);
             }
         }
     }
